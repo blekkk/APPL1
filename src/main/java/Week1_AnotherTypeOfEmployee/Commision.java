@@ -19,7 +19,7 @@ public class Commision extends Hourly{
     //override pay method to calculate payment
     @Override
     public double pay() {
-        double payment = super.pay() + (this.commision_rate * this.commision_rate);
+        double payment = super.pay() + (this.commision_rate * this.total_sales);
         this.total_sales = 0;
         return  payment;
     }
