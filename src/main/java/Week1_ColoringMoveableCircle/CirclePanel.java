@@ -36,6 +36,8 @@ public class CirclePanel extends JPanel
         JButton black = new JButton("Black");
         JButton cyan = new JButton("Cyan");
 
+        JButton chooseColor = new JButton("Choose Color");
+
 // Add listeners to the buttons
         left.addActionListener(new MoveListener(-20,0));
         right.addActionListener(new MoveListener(20,0));
@@ -46,6 +48,8 @@ public class CirclePanel extends JPanel
         red.addActionListener(new ColorListener(Color.red));
         black.addActionListener(new ColorListener(Color.black));
         cyan.addActionListener(new ColorListener(Color.cyan));
+
+        chooseColor.addActionListener(new ColorListener(null));
 //Change the color of the "Change color" buttons
         blue.setForeground(Color.blue);
         red.setForeground(Color.red);
@@ -63,6 +67,7 @@ public class CirclePanel extends JPanel
         JPanel buttonPanelColor = new JPanel();
         buttonPanelColor.add(blue);
         buttonPanelColor.add(red);
+        buttonPanelColor.add(chooseColor);
         buttonPanelColor.add(black);
         buttonPanelColor.add(cyan);
 
@@ -89,7 +94,11 @@ public class CirclePanel extends JPanel
         }
 // Change the circle color
         public  void  actionPerformed(ActionEvent e) {
-            c = this.shapeColor;
+            if (this.shapeColor == null) {
+                c = JColorChooser.showDialog(null,"Select a color", Color.white);
+            } else {
+                c = this.shapeColor;
+            }
             repaint();
         }
     }
